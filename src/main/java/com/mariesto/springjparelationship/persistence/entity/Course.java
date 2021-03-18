@@ -11,10 +11,6 @@ import javax.persistence.*;
 public class Course {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    @Column
     private String code;
 
     @Column
@@ -22,4 +18,9 @@ public class Course {
 
     @Column
     private String description;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "lecturer_id", referencedColumnName = "id")
+    private Lecturer lecturer;
+
 }

@@ -25,7 +25,7 @@ public class CourseController {
     }
 
     @GetMapping("/{courseId}")
-    private ResponseEntity<Object> findCourseById(@PathVariable int courseId) throws NotFoundException {
+    private ResponseEntity<Object> findCourseById(@PathVariable String courseId) throws NotFoundException {
         Course course = service.findCourseById(courseId);
 
         return new ResponseEntity<>(course, HttpStatus.OK);
@@ -36,5 +36,14 @@ public class CourseController {
         service.createCourse(course);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PatchMapping("/{courseId}/assign/{lecturerId}")
+    private ResponseEntity<Object> assignCourse(@PathVariable String courseId, @PathVariable int lecturerId) throws NotFoundException {
+        service.assignCourse(courseId, lecturerId);
+
+        Course course = service.findCourseById(courseId);
+
+        return new ResponseEntity<>(course, HttpStatus.OK);
     }
 }
