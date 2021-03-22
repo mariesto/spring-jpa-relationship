@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
 @Setter
+@Getter
 @Entity
 public class Course {
 
